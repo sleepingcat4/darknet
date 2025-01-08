@@ -1,3 +1,4 @@
+SHELL := cmd.exe
 GPU=0
 CUDNN=0
 OPENCV=0
@@ -26,6 +27,7 @@ AR=ar
 ARFLAGS=rcs
 OPTS=-Ofast
 LDFLAGS= -lm -pthread 
+LDFLAGS += -lws2_32
 COMMON= -Iinclude/ -Isrc/
 CFLAGS=-Wall -Wno-unused-result -Wno-unknown-pragmas -Wfatal-errors -fPIC
 
@@ -92,11 +94,11 @@ $(OBJDIR)%.o: %.cu $(DEPS)
 	$(NVCC) $(ARCH) $(COMMON) --compiler-options "$(CFLAGS)" -c $< -o $@
 
 obj:
-	mkdir -p obj
+	if not exist obj mkdir obj
 backup:
-	mkdir -p backup
+	if not exist backup mkdir backup
 results:
-	mkdir -p results
+	if not exist results mkdir results
 
 .PHONY: clean
 

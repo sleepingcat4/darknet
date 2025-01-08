@@ -1,4 +1,6 @@
 #include "darknet.h"
+#include <winsock2.h>
+#include <windows.h>
 
 #include <assert.h>
 #include <math.h>
